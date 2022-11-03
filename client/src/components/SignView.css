@@ -1,0 +1,307 @@
+body {
+font-family: 'consolas';
+}
+
+.SignView {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    }
+
+.intro {
+ font-size: 15px; 
+}
+
+
+.horoscope_container {
+    display: grid;
+    /* text-indent: 20px; */
+    text-align: left;
+    color: white;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    padding-left: 120px;
+    padding-right: 120px;
+    background-color: black;
+    margin: 70px 200px 100px 200px;
+    border-radius: 5px;
+    border: 0 solid rgb(67, 63, 63);
+    font-size: 18px;
+    }
+
+
+    .planet-img {
+    
+        width: 250px;
+        height: 177px;
+        margin: auto;
+        padding-top: 9px;
+
+      }
+ 
+
+ footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'consolas' white 20px;
+    height: 100%;
+    width: 100%;
+    /* border-bottom: 1px solid white; */
+    }
+
+.div.container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* form design */
+  
+  .SignView form {
+    text-align: center;
+    /* border: 1px solid #4A4A4A; */
+    padding: 10px;
+  }
+  
+  .SignView label {
+    display: block;
+    letter-spacing: 4px;
+    padding-top: 10px;
+    text-align: center;
+  }
+  
+  
+ .label-text {
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    line-height: 20px;
+  
+  }
+
+  
+
+  /* remove the input box styling */
+  .SignView input {
+    display: inline-block;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    width: 250px;
+    transition: all 0.3s;
+  }
+  
+  .SignView input:focus {
+    max-width: 100%;
+    width: 400px;
+  }
+  
+  
+  .SignView select:focus {
+    max-width: 100%;
+    width: 400px;
+  }
+  /* the text floats up and turns white */
+  
+  .love-text {
+    display: inline;
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    line-height: 20px;
+    font-size: 18px;
+  }
+
+.creative-text {
+    display: inline;
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    line-height: 20px;
+    font-size: 18px;
+  }
+  /* the text floats up during form validation */
+  
+
+
+ .mood-text {
+  display: inline;
+  color: #9B9B9B;
+  cursor: text;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+
+.lucky-text {
+  display: inline;
+  color: #9B9B9B;
+  cursor: text;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+.time-text {
+  display: inline;
+  color: #9B9B9B;
+  cursor: text;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+select {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    color: #faf9f2;
+    font-size: 18px;
+    letter-spacing: 1px;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 300px;
+
+
+  }
+  
+  
+  .SignView button {
+    background: transparent;
+    color: #F0F0F0;
+    border: 1.5px solid #F0F0F0;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 20px 30px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    margin: 15px 30px;
+    -webkit-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      transition: all 0.4s;
+  }
+  
+  .SignView button:hover, button:focus {
+    background-color: white;
+    color: #333333;
+  }
+
+   
+  .date {
+    font-size: 15px;
+    text-decoration: underline;
+    padding-bottom: 20px;
+  }
+  
+
+  /* style className="email-sign-form" */
+.email-sign-form {
+
+  text-align: center;
+  color: white;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 120px;
+  padding-right: 120px;
+  background-color: black;
+  border-radius: 5px;
+  border: 0 solid rgb(67, 63, 63);
+
+  }
+
+   /* style className="email-sign-label" */
+  .email-sign-label {
+    display: inline-block;
+    font-size: 15px;
+    letter-spacing: 2px;
+      padding: 10px 10px;
+
+  }
+
+   /* style className="email-sign-form button" */
+
+.email-sign-form button {   
+  background-color: transparent; 
+  border-color: rgb(250, 247, 235);  
+  border: 1px solid #F0F0F0;
+  color: white;
+  padding: 10px 30px;
+  letter-spacing: 2px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 30px;
+  cursor: pointer;
+  }
+
+  .email-sign-form button:hover {
+    border: 1px;
+    background-color:transparent;
+    border-color: rgb(250, 247, 235);
+  }
+
+
+  .email-sign-form input {
+    display: inline-block;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1.5px solid #4A4A4A;
+    color: white;
+    font-size: 15px;
+    letter-spacing: 1px;
+    outline: 0;
+    padding: 10px 22px;
+    text-align: center;
+    width: 150px;
+    transition: all 0.3s;
+  }
+
+  .signUseful  { 
+    background-color: transparent;   
+    color: rgb(249, 247, 222);
+    padding: 10px;
+    letter-spacing: 2px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    padding: 10px 10px 10px 10px;;
+    margin: 20px ;
+    cursor: pointer;
+    }
+
+
+     /* align the img to the right of the container  */
+    .planet-img { 
+      float: right;
+      padding: 10px 0px 30px 0px;
+      margin: 10px 0px 0px 10px;
+    
+     
+ 
+    }
