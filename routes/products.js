@@ -17,7 +17,7 @@ router.get("/products/:name", function(req, res) {
             if(!result.data.length) {
                 res.status(404).send({error: 'Product not found'})
             } else {
-            res.send(result.data)};
+            res.send(result.data[0])};
         })
         .catch(err => res.status(500).send({error: err.message}));
 });

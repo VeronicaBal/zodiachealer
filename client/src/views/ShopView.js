@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import "./ShopView.css";
@@ -17,6 +17,11 @@ function ShopView(props){
           });  
       }, [])
 
+    
+    // const {state, dispatch, cxtDispatch} = useContext();
+    //  const addToCartHandler = () => {
+    //     cxtDispatch({type: 'CART_ADD_ITEM', payload: {...products, quantity:1}}) //change quantity depending on input
+    //  } 
 
     return(
         <div className = "shop-view">
@@ -31,8 +36,10 @@ function ShopView(props){
                             alt={p.name}/>  
                         </Link>
                         <p>€{p.price}</p>
-                        <p>{p.name}</p>
-                        <button>Add to cart</button>
+                        <Link className="product-name" to={`/product/${p.name}`}>
+                            {p.name}
+                        </Link>
+                        <button >Add to cart</button>
                     </div>
                 ))
                 }

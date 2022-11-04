@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import React,{useState, useEffect} from 'react'
 
 import "./ProductView.css"
@@ -6,12 +6,13 @@ import "./ProductView.css"
 function ProductScreen(){
  const [product, setProduct] = useState({});
  const params = useParams();
+ const [stock, setStock] = useState(-1);
  const {name} = params;
 
  useEffect(() =>{
     fetch(`/products/${name}`)
       .then(res => res.json())
-      .then(json => {setProduct(json[0]);})
+      .then(json => {setStock(json.stock); setProduct(json);})
       .catch(error => {
         console.log(`Server error: ${error.message}`)
       });  
@@ -19,7 +20,12 @@ function ProductScreen(){
 
  return (
     <div className="product-view">
-        <h1>{name}</h1>
+        <section classList="title-container">
+            <Link to='/shop'>
+                <button>Back</button> 
+            </Link>
+            <h1>{name}</h1>
+        </section>
         <div className="product-container">
             <img 
                 className = "product-image"
@@ -28,12 +34,15 @@ function ProductScreen(){
                 alt={product.name} />
             <section>
                     <p className="price">€{product.price} 
+                        {stock > 0 ? 
                         <label className="label">Quantity
                         <input type="number" min="1" max="10" defaultValue={1}></input> 
-                        </label>
+                        </label> : 
+                        <p>Out of stock</p>
+                        }
                     </p>
                 <p className="description">{product.description}</p>
-                <button>Add to cart</button>
+                <button disabled={product.stock = 0}>Add to cart</button>
             </section>
         </div>
     </div>

@@ -33,7 +33,12 @@
     grid-auto-rows: 500px;
     width: 100%;
     max-width: 1200px;
-    margin: 110px 0;
+    margin: 110px auto;
+}
+
+.shop-view .product-name{
+  color: white;
+  text-decoration: none;
 }
 
 .image-container{
@@ -64,8 +69,8 @@ transition: transform 0.2s ease;
     padding: 18px 30px ;
     text-transform: uppercase;
     cursor: pointer;
-    display: inline-block;
-    margin: 15px;
+    display: block;
+    margin: 15px auto;
     -webkit-transition: all 0.4s;
       -moz-transition: all 0.4s;
       transition: all 0.4s;

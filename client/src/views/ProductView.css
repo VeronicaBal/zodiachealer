@@ -11,6 +11,11 @@
     margin: 110px 0px;
 }
 
+.product-view .title-container{
+    display: flex;
+    flex-direction: row;
+}
+
 .product-view .label{
     margin-left: 40px;
     text-transform: uppercase;
