@@ -1,10 +1,13 @@
-
+import React, {useEffect, useState} from "react";
 import { Routes, Route, Link } from "react-router-dom";
+
 import './App.css';
+
 import SignView from './components/SignView';
 import AffirmationView from './components/AffirmationView';
 import MashupView from './components/MashupView';
 import NavBar from "./components/NavBar";
+import ShopView from "./views/ShopView";
 
 
 function App() {
@@ -39,6 +42,7 @@ function App() {
         < Route path="/sign" element={<SignView />} />
         < Route path="/affirmations" element={<AffirmationView />} />
         < Route path="/mashup" element={<MashupView />} />
+        < Route path="/shop" element={<ShopView />} />
         </Routes>
       </header>
     </div>

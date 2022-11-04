@@ -12,6 +12,8 @@ export default function NavBar() {
             <Link to="/sign">HOROSCOPE</Link>
             <br/>
             <Link to="/mashup">ART</Link>
+            <br/>
+            <Link to="/shop">SHOP</Link>
             </nav>
     );
 }
