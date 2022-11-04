@@ -8,7 +8,7 @@ import AffirmationView from './components/AffirmationView';
 import MashupView from './components/MashupView';
 import NavBar from "./components/NavBar";
 import ShopView from "./views/ShopView";
-
+import ProductView from "./views/ProductView";
 
 function App() {
  
@@ -43,6 +43,7 @@ function App() {
         < Route path="/affirmations" element={<AffirmationView />} />
         < Route path="/mashup" element={<MashupView />} />
         < Route path="/shop" element={<ShopView />} />
+        < Route path="/product/:name" element={<ProductView />} />
         </Routes>
       </header>
     </div>

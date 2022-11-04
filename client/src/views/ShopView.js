@@ -23,11 +23,13 @@ function ShopView(props){
             <section>
                 {products && products.map((p) => (
                     <div className = "image_container">
-                        <img 
-                        className = "product-image"
-                        key={p.id} 
-                        src={p.image} 
-                        alt={p.name}/>   
+                        <Link to={`/product/${p.name}`}>
+                            <img 
+                            className = "product-image"
+                            key={p.id} 
+                            src={p.image} 
+                            alt={p.name}/>  
+                        </Link>
                         <p>€{p.price}</p>
                         <p>{p.name}</p>
                         <button>Add to cart</button>
