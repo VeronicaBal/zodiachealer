@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import './App.css';
@@ -9,11 +9,16 @@ import MashupView from './components/MashupView';
 import NavBar from "./components/NavBar";
 import ShopView from "./views/ShopView";
 import ProductView from "./views/ProductView";
+import CartView from "./views/CartView"
+
+import {Store} from "./Store"
+
 
 
 function App() {
- 
-  
+  const {state} = useContext(Store);
+  const {cart} = state;
+
   function Home() {
     return (
       <>
@@ -45,6 +50,8 @@ function App() {
         < Route path="/mashup" element={<MashupView />} />
         < Route path="/shop" element={<ShopView />} />
         < Route path="/product/:name" element={<ProductView />} />
+        < Route path="/cart" element={<CartView />} />
+
         </Routes>
       </header>
     </div>

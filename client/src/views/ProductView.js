@@ -1,5 +1,6 @@
 import {useParams, Link} from "react-router-dom";
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
+import {Store} from "../Store"
 
 import "./ProductView.css"
 
@@ -17,6 +18,16 @@ function ProductScreen(){
         console.log(`Server error: ${error.message}`)
       });  
   }, [])
+
+const {state, dispatch: cxtDispatch} = useContext(Store);
+const {cart} = state
+ const addToCartHandler = () => {
+    //checking if items are already in cart to avoid duplicates
+    const existItem = cart.cartItems.find((x) => x.id === product.id);
+    //if the item exist 
+    const quantity = existItem ? existItem.quantity +1 : 1;
+    cxtDispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity: quantity}}) //change quantity depending on input
+ } 
 
  return (
     <div className="product-view">
@@ -42,7 +53,7 @@ function ProductScreen(){
                         }
                     </p>
                 <p className="description">{product.description}</p>
-                <button disabled={product.stock = 0}>Add to cart</button>
+                <button onClick={addToCartHandler} disabled={product.stock = 0}>Add to cart</button>
             </section>
         </div>
     </div>

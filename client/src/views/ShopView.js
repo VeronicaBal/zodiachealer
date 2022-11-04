@@ -18,10 +18,7 @@ function ShopView(props){
       }, [])
 
     
-    // const {state, dispatch, cxtDispatch} = useContext();
-    //  const addToCartHandler = () => {
-    //     cxtDispatch({type: 'CART_ADD_ITEM', payload: {...products, quantity:1}}) //change quantity depending on input
-    //  } 
+  
 
     return(
         <div className = "shop-view">

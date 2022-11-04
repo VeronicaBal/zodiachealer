@@ -1,0 +1,13 @@
+.cart-grid img{
+    border: 3px solid white;
+    border-radius: 20px;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    object-fit:cover;
+    margin: auto;
+    margin-top: -22px;
+    z-index: 0;
+    user-select: none;
+    transition: transform 0.2s ease;
+}
