@@ -7,13 +7,12 @@ import "./ProductView.css"
 function ProductScreen(){
  const [product, setProduct] = useState({});
  const params = useParams();
- const [stock, setStock] = useState(-1);
  const {name} = params;
 
  useEffect(() =>{
     fetch(`/products/${name}`)
       .then(res => res.json())
-      .then(json => {setStock(json.stock); setProduct(json);})
+      .then(json => {setProduct(json);})
       .catch(error => {
         console.log(`Server error: ${error.message}`)
       });  
@@ -26,12 +25,12 @@ const {cart} = state
     const existItem = cart.cartItems.find((x) => x.id === product.id);
     //if the item exist 
     const quantity = existItem ? existItem.quantity +1 : 1;
-    cxtDispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity: quantity}}) //change quantity depending on input
+    cxtDispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}}) //change quantity depending on input
  } 
 
  return (
     <div className="product-view">
-        <section classList="title-container">
+        <section className="title-container">
             <Link to='/shop'>
                 <button>Back</button> 
             </Link>
@@ -45,7 +44,7 @@ const {cart} = state
                 alt={product.name} />
             <section>
                     <p className="price">€{product.price} 
-                        {stock > 0 ? 
+                        {product.stock > 0 ? 
                         <label className="label">Quantity
                         <input type="number" min="1" max="10" defaultValue={1}></input> 
                         </label> : 
@@ -53,8 +52,9 @@ const {cart} = state
                         }
                     </p>
                 <p className="description">{product.description}</p>
-                <button onClick={addToCartHandler} disabled={product.stock = 0}>Add to cart</button>
+                <button onClick={addToCartHandler} disabled={product.stock === 0}>Add to cart</button>
             </section>
+           
         </div>
     </div>
     
