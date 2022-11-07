@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./ShopView.css";
 import {Store} from "../Store.js"
@@ -7,6 +7,7 @@ import {Store} from "../Store.js"
 
 function ShopView(props){
     let [products, setProducts] = useState([]);
+    let navigate = useNavigate();
 
 
     useEffect(() =>{
@@ -30,6 +31,7 @@ function ShopView(props){
         const quantity = existItem ? existItem.quantity +1 : 1;
         const {data} = await axios.get(`products/${item.name}`);
         ctxDispatch({type: 'CART_ADD_ITEM', payload: {...item, quantity}}) //change quantity depending on input
+        navigate("/cart")
     }
 
     return(

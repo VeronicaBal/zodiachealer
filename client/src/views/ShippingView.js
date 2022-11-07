@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./ShippingView.css"
 
 let EMPTY_FORM = {
     firstName: "",
@@ -30,39 +31,66 @@ function handleSubmit(event){
 
 
     return (
-        <div>
+        <div className="shipping-view">
             <h2>Shipping Details</h2>
-            <form onSubmit={e=> handleSubmit(e)}>
-                <label> First Name
-                    <input onChange={e => handleChange(e)} name="firstName" key="firstName" required type="text"/>
-                </label>
-                <label> Last Name
-                    <input onChange={e => handleChange(e)} name="lastName" key="lastName" required type="text"/>
-                </label>
-                <label> Email
-                    <input onChange={e => handleChange(e)} name="email" key="email" required type="email"/>
-                </label>
+            <form onSubmit={e=> handleSubmit(e)} className="container">
+                <separate className="user-form">
+                    <label> First Name
+                        <div>
+                            <input onChange={e => handleChange(e)} name="firstName" key="firstName" required type="text"/>
+                        </div>
+                    </label>
+                    <label> Last Name
+                        <div>
+                            <input onChange={e => handleChange(e)} name="lastName" key="lastName" required type="text"/>
+                        </div>
+                    </label>
+                    <label> Email
+                        <div>
+                            <input onChange={e => handleChange(e)} name="email" key="email" required type="email"/>
+                        </div>
+                    </label>
+                </separate>
+                
                 <h3>Address</h3>
-                <label> Street
-                    <input onChange={e => handleChange(e)} name="street" key="street" required type="text"/>
-                </label>
-                <label> House number
-                    <input onChange={e => handleChange(e)} name="house_number" key="house_number" required type="text"/>
-                </label>
-                <label> Floor / Apartment
-                    <input onChange={e => handleChange(e)} name="floor" key="floor" type="text" placeholder="optional"/>
-                </label>
-                <label> Postal Code
-                    <input onChange={e => handleChange(e)} name="postal_code" key="postal_code" required type="number"/>
-                </label>
-                <label> City
-                    <input onChange={e => handleChange(e)} name="city" key="city" required type="text"/>
-                </label>
-                <label> Country
-                    <input onChange={e => handleChange(e)} name="country" key="country" required type="text"/>
-                </label>
+                <separate className="address-form">
+                    <label> Street
+                        <div>
+                            <input onChange={e => handleChange(e)} name="street" key="street" required type="text"/>
+                        </div>
+                    </label>
+                    <label> House number
+                        <div>
+                             <input onChange={e => handleChange(e)} name="house_number" key="house_number" required type="text"/>
+                        </div>
+
+                    </label>
+                    <label> Floor / Apartment
+                        <div>
+                            <input onChange={e => handleChange(e)} name="floor" key="floor" type="text" placeholder="optional"/>
+                        </div>
+                    </label>
+                    <label> Postal Code
+                        <div>
+                             <input onChange={e => handleChange(e)} name="postal_code" key="postal_code" required type="number"/>
+                        </div>
+
+                    </label>
+                    <label> City
+                         <div>
+                            <input onChange={e => handleChange(e)} name="city" key="city" required type="text"/>
+                        </div>
+
+                    </label>
+                    <label> Country
+                        <div>
+                            <input onChange={e => handleChange(e)} name="country" key="country" required type="text"/>
+                        </div>
+
+                    </label>
+                </separate>
                 <div>
-                    <button type="submit">Sign In</button>
+                    <button type="submit">Confirm Order</button>
                 </div>
             </form>
         </div>

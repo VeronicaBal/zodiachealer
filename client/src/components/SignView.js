@@ -43,13 +43,13 @@ const sendHoroscope = () => {
     return (
         <div className="SignView">
         <p className="intro">GET YOUR HOROSCOPE FORECAST BY FILLING OUT THE FORM BELOW</p><br/>
-             <div class="container">
+             <div className="container">
              
                 <form onSubmit={handleSubmit}> 
         
             <label>
         <input type="text" required id="name" value={user} onChange={e => setUser(e.target.value)} />
-        <div class="label-text">Name</div>
+        <div className="label-text">Name</div>
         </label>
        
         <label htmlFor="sign">
@@ -69,7 +69,7 @@ const sendHoroscope = () => {
                     <option value="aquarius">Aquarius</option>
                     <option value="pisces">Pisces</option>
                     </select>   
-                    <div class="label-text">Sign</div> 
+                    <div className="label-text">Sign</div> 
                     </label>
                     
                     <label htmlFor="date"> 
@@ -80,7 +80,7 @@ const sendHoroscope = () => {
                         <option value="tomorrow">Tomorrow</option>
                         <option value="yesterday">Yesterday</option>
                         </select> 
-                        <div class="label-text">Date</div>
+                        <div className="label-text">Date</div>
                         </label>
 
                         <button type="submit">GET HOROSCOPE</button>

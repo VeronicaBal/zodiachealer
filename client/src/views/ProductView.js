@@ -1,4 +1,4 @@
-import {useParams, Link} from "react-router-dom";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import React,{useState, useEffect, useContext} from 'react'
 import {Store} from "../Store"
 
@@ -8,6 +8,8 @@ function ProductScreen(){
  const [product, setProduct] = useState({});
  const params = useParams();
  const {name} = params;
+ const [selectedQuantity, setQuantity] = useState(1);
+ let navigate = useNavigate();
 
  useEffect(() =>{
     fetch(`/products/${name}`)
@@ -24,9 +26,14 @@ const {cart} = state
     //checking if items are already in cart to avoid duplicates
     const existItem = cart.cartItems.find((x) => x.id === product.id);
     //if the item exist 
-    const quantity = existItem ? existItem.quantity +1 : 1;
+    const quantity = existItem ? existItem.quantity + Number(selectedQuantity) : 1;
     cxtDispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}}) //change quantity depending on input
+    navigate(`/cart`)
  } 
+
+const handleChange= (event) => {
+setQuantity(event.target.value)
+}
 
  return (
     <div className="product-view">
@@ -46,7 +53,7 @@ const {cart} = state
                     <p className="price">€{product.price} 
                         {product.stock > 0 ? 
                         <label className="label">Quantity
-                        <input type="number" min="1" max="10" defaultValue={1}></input> 
+                        <input type="number" min="1" max="10" defaultValue={1} onChange={(e)=> handleChange(e)} ></input> 
                         </label> : 
                         <p>Out of stock</p>
                         }

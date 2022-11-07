@@ -21,7 +21,7 @@ export default function NavBar() {
             <br/>
             <Link to="/cart"><img className="trolley-icon" src="bag-white.png"/>
                 {cart.cartItems.length > 0 && (
-                <span class="badge">{cart.cartItems.reduce((a, c) => a + c.quantity, 0)}</span>
+                <span className="badge">{cart.cartItems.reduce((a, c) => a + c.quantity, 0)}</span>
                 )}
             </Link>
             </nav>

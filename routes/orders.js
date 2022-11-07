@@ -57,7 +57,7 @@ function joinToJson(result) {
 
             }
             orders.push(order_details);
-            
+
     return orders
 
 }
@@ -79,6 +79,19 @@ router.get("/orders", function(req, res) {
         })
         .catch(err => res.status(500).send({error: err.message}));
 });
+
+router.post("/orders", function(req, res){
+    let {customer_name, email, address} = req.body;
+   
+    db(`INSERT INTO orders (email, address, customer_name)
+    VALUES ('${email}', '${address}', '${customer_name}')`)
+    .then(() => { 
+        db(`SELECT * FROM orders`)
+            .then(result => 
+            res.status(201).send(result.data)
+            )})
+      .catch(err => res.status(500).send({error: err.message}));
+  });
 
 
 module.exports = router;

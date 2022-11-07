@@ -22,29 +22,51 @@ function CartView(){
     }
    
     const checkoutHandler = () => {
-        navigate('/signin?redirect=/shipping');
+        addOrderItems();
+        navigate('/shipping');
     };
 
+    const addOrderItems= () => {
+    for (let item in cartItems){
+    fetch("/items", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({quantity: item.quantity, product_id: item.product_id, order_id: 5})
+      })
+      // Continue fetch request here
+      .then((res) => {
+        res.json()
+        .then((json)=> {
+         // props.setIndicators(json)
+        })})
+      .catch(error => {
+        console.log(`Server error: ${error.message}`)
+      })
+    }
+}
+
     return (
-        <div>
+        <div className="cart-view">
             <h1>Shopping Cart</h1>
             <div className="cart-grid">
                 {cartItems.length === 0 ? (
                     <p>Cart is empty.</p>
                 ) :
-                <separate> 
+                <separate className="product-list"> 
                     {cartItems.map((item) => (
-                        <separate classList ="product-list"key={item.id}>
+                        <separate className="product" key={item.id}>
                             <img src={item.image}
                             alt={item.name}/>
                             <Link to={`product/${item.name}`} className="name">{item.name}</Link>
-                            <button disabled={item.quantity === 1} 
+                            <button disabled={item.quantity === 1} className="minus" 
                             onClick={()=> updateCartHandler(item, item.quantity-1)}>-</button>
                             {item.quantity}
-                            <button disabled={item.quantity === item.stock} 
+                            <button disabled={item.quantity === item.stock} className="plus" 
                             onClick={()=> updateCartHandler(item, item.quantity+1)}>+</button>
-                            <p className="price">{item.price}</p>
-                            <button onClick={()=> removeItemHandler(item)}>delete</button>
+                            <p className="price">€{(item.price*item.quantity).toFixed(2)}</p>
+                            <button className="delete" onClick={()=> removeItemHandler(item)}><img src="bin-icon.png" alt="delete"/></button>
                         </separate>
                     ) )}
                 </separate>
