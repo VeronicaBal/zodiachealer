@@ -22,4 +22,19 @@ router.get("/products/:name", function(req, res) {
         .catch(err => res.status(500).send({error: err.message}));
 });
 
+router.post("/products", function(req, res){
+    let {name, price, stock, image, description} = req.body;
+    sql= (`INSERT INTO products (name, price, stock, image, description)
+    VALUES ('${name}', ${price}, ${stock}, '${image}', '${description}');`
+    );
+   
+    db(sql)
+    .then(() => { 
+        db(`SELECT * FROM products`)
+            .then(result => 
+            res.status(201).send(result.data)
+            )})
+      .catch(err => res.status(500).send({error: err.message}));
+  });
+
 module.exports = router;

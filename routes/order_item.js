@@ -62,19 +62,19 @@ router.get("/items", function(req, res) {
         .catch(err => res.status(500).send({error: err.message}));
 });
 
-router.post("/items", function(req, res){
-    let {quantity, product_id, order_id} = req.body;
+// router.post("/items", function(req, res){
+//     let {quantity, product_id, order_id} = req.body;
    
-    db(`INSERT INTO order_item (quantity, product_id, order_id)
-    VALUES (${quantity}, ${product_id}, ${order_id})`)
-    .then(() => { 
-        db(`SELECT * FROM order_item
-        JOIN products 
-        ON order_item.product_id = products.id`)
-            .then(result => 
-            res.status(201).send(joinToJson(result))
-            )})
-      .catch(err => res.status(500).send({error: err.message}));
-  });
+//     db(`INSERT INTO order_item (quantity, product_id, order_id)
+//     VALUES (${quantity}, ${product_id}, ${order_id})`)
+//     .then(() => { 
+//         db(`SELECT * FROM order_item
+//         JOIN products 
+//         ON order_item.product_id = products.id`)
+//             .then(result => 
+//             res.status(201).send(joinToJson(result))
+//             )})
+//       .catch(err => res.status(500).send({error: err.message}));
+//   });
 
 module.exports = router;

@@ -19,23 +19,23 @@ function joinToJson(result) {
         date: row0.date,
         email: row0.email,
         address: row0.address,
-        products: {
-            [row0.name]: {
+        products: [
+                { name: row0.name,
                 quantity: row0.quantity, 
                 price: row0.price
-            }    
-        }
+                } ] 
+        
     }
 
         for (let row of rows) {
             if(row.order_id === order_details.id){
-                let newProduct = {
-                    [row.name]: {
+                order_details.products.push(
+                    { name: row.name,
                         quantity: row.quantity, 
                         price: row.price
-                    } 
-                }
-                Object.assign(order_details.products, newProduct)
+                    } )
+                
+                //Object.assign(order_details.products, newProduct)
 
                 } else {
                     orders.push(order_details);
@@ -45,12 +45,12 @@ function joinToJson(result) {
                         date: row.date,
                         email: row.email,
                         address: row.address,
-                        products: {
-                            [row.name]: {
+                        products: [
+                              { name: row.name,
                                 quantity: row.quantity, 
                                 price: row.price
                             }    
-                        }
+                        ]
                     }
 
                 }
@@ -81,16 +81,31 @@ router.get("/orders", function(req, res) {
 });
 
 router.post("/orders", function(req, res){
-    let {customer_name, email, address} = req.body;
+    let {customer_name, email, address, productList} = req.body;
    
     db(`INSERT INTO orders (email, address, customer_name)
-    VALUES ('${email}', '${address}', '${customer_name}')`)
-    .then(() => { 
-        db(`SELECT * FROM orders`)
-            .then(result => 
-            res.status(201).send(result.data)
-            )})
-      .catch(err => res.status(500).send({error: err.message}));
+    VALUES ('${email}', '${address}', '${customer_name}');
+    SELECT LAST_INSERT_ID();`)
+    .then((result) => {
+        let orderId = result.data[0].insertId;
+         for(product in productList){
+            let product = productList[product];
+            db(`INSERT INTO order_item (quantity, product_id, order_id)
+            VALUES (${product.quantity}, ${product.product_id}, ${orderId})`)
+            .then(result => res.status(201).send(result.data) )}
+         })
+         let sql= (`SELECT orders.*, order_item.order_id, order_item.quantity, products.name, products.price 
+         FROM ORDERS
+         JOIN order_item
+         ON orders.id = order_item.order_id
+         JOIN products
+         ON products.id = order_item.product_id`)
+            
+         db(sql)
+         .then(result => {
+            res.send(joinToJson(result));
+        })
+        .catch(err => res.status(500).send({error: err.message}));            
   });
 
 
