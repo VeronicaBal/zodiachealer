@@ -1,0 +1,59 @@
+.add-product .grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 10px 50px;
+    width: 100%;
+    max-width: 1200px;
+    align-items: center;
+    text-align: left;
+}
+.add-product{
+    border: 1px solid white;
+    margin: 20px;
+    padding: 10px 0;
+}
+
+.add-product label{
+    margin-left: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    line-height: 20px;
+}
+
+.add-product input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    color: white;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 150px;
+    font-size: 20px
+}
+
+.add-product textarea {
+    background-color: transparent;
+    border: 2px solid #4A4A4A;
+    color: white;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 150px;
+    font-size: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.add-product .description{
+    display: block;
+    grid-column: 1/span 2;
+    
+}

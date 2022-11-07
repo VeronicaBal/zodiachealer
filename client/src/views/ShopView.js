@@ -38,7 +38,7 @@ function ShopView(props){
         <div className = "shop-view">
             <section>
                 {products && products.map((p) => (
-                    <div className = "image_container">
+                    <div key={p.id} className = "image_container">
                         <Link to={`/product/${p.name}`}>
                             <img 
                             className = "product-image"

@@ -104,3 +104,11 @@ flex-direction: column;
     background-color: white;
     color: #333333;
 }
+
+.cart-view .delete{
+    border:none;
+    width: 30px;
+    height: 35px;
+    border-radius: 0px;
+    object-fit:cover;
+}

@@ -66,7 +66,7 @@ function CartView(){
                             <button disabled={item.quantity === item.stock} className="plus" 
                             onClick={()=> updateCartHandler(item, item.quantity+1)}>+</button>
                             <p className="price">€{(item.price*item.quantity).toFixed(2)}</p>
-                            <button className="delete" onClick={()=> removeItemHandler(item)}><img src="bin-icon.png" alt="delete"/></button>
+                            <a  onClick={()=> removeItemHandler(item)}><img className="delete" src="bin-icon.png" alt="delete"/></a>
                         </separate>
                     ) )}
                 </separate>

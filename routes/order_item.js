@@ -23,7 +23,7 @@ function joinToJson(result) {
         }
     }
         for (let row of rows) {
-            if(row.order_id === order_details.order_id){
+            if(Number(row.order_id) === Number(order_details.order_id)){
                 let newProduct = {
                     [row.name]: {
                         quantity: row.quantity, 
