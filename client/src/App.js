@@ -9,7 +9,8 @@ import MashupView from './components/MashupView';
 import NavBar from "./components/NavBar";
 import ShopView from "./views/ShopView";
 import ProductView from "./views/ProductView";
-import CartView from "./views/CartView"
+import CartView from "./views/CartView";
+import ShippingView from "./views/ShippingView";
 
 import {Store} from "./Store"
 
@@ -51,6 +52,7 @@ function App() {
         < Route path="/shop" element={<ShopView />} />
         < Route path="/product/:name" element={<ProductView />} />
         < Route path="/cart" element={<CartView />} />
+        < Route path="/shipping" element={<ShippingView />} />
 
         </Routes>
       </header>
