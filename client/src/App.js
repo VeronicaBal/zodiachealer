@@ -3,6 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 
 import './App.css';
 
+import HomeView from "./views/HomeView";
 import SignView from './views/SignView';
 import AffirmationView from './views/AffirmationView';
 import MashupView from './views/MashupView';
@@ -13,28 +14,35 @@ import CartView from "./views/CartView";
 import ShippingView from "./views/ShippingView";
 import OrderConfirmationView from "./views/OrderConfirmationView";
 import AdminView from "./views/AdminView";
-
-
 import {Store} from "./Store"
+import AdminContext from "./Context/AdminContext";
 
 
 
-function App() {
-  const {state} = useContext(Store);
-  const {cart} = state;
+function App() { 
+  let [products, setProducts] = useState([]);
 
-  function Home() {
-    return (
-      <>
-        <main>
-        <p className="intro"><i>GUIDANCE STRAIGHT FROM THE STARS</i></p>
-          
-          <img className="darksky-img" src="https://images.unsplash.com/photo-1517544845501-bb7810f64d76?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"/>
-        </main>
-      </>
-    );
-  }
+  useEffect(() =>{
+    fetch("/products")
+      .then(res => res.json())
+      .then(json => {setProducts(json);})
+      .catch(error => {
+        console.log(`Server error: ${error.message}`)
+      });  
+  }, [])
+
+  const {state, dispatch: ctxDispatch} = useContext(Store);
+  const {
+    cart: {cartItems},
+} = state;
+
+
+
  
+let obj = {
+  products,
+  setProducts
+}
 
   return (
     
@@ -47,20 +55,22 @@ function App() {
         <br/>
         <p>- THE ZODIAC HEALER -</p>
         <br/>
+
+        <AdminContext.Provider value={obj}>
         <Routes>
-        < Route path="/" element={<Home />} />
-        < Route path="/sign" element={<SignView />} />
-        < Route path="/affirmations" element={<AffirmationView />} />
-        < Route path="/mashup" element={<MashupView />} />
-        < Route path="/shop" element={<ShopView />} />
-        < Route path="/product/:name" element={<ProductView />} />
-        < Route path="/cart" element={<CartView />} />
-        < Route path="/shipping" element={<ShippingView />} />
-        < Route path="/orderconfirmation" element={<OrderConfirmationView />} />
-        < Route path="/admin" element={<AdminView />} />
+          < Route path="/" element={<HomeView />} />
+          < Route path="/sign" element={<SignView />} />
+          < Route path="/affirmations" element={<AffirmationView />} />
+          < Route path="/mashup" element={<MashupView />} />
+          < Route path="/product/:name" element={<ProductView />} />
+          < Route path="/orderconfirmation" element={<OrderConfirmationView />} />
+          < Route path="/shop" element={<ShopView />} />
+          < Route path="/shipping" element={<ShippingView />} />
+          < Route path="/admin" element={<AdminView />} />
+          < Route path="/cart" element={<CartView />} />
+          </Routes>
+        </AdminContext.Provider>
 
-
-        </Routes>
       </header>
     </div>
   );

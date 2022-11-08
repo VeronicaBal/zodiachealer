@@ -1,28 +1,20 @@
 import React, {useEffect, useState, useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AdminContext from "../Context/AdminContext";
 import axios from "axios";
 import "./ShopView.css";
 import {Store} from "../Store.js"
 
 
 function ShopView(props){
-    let [products, setProducts] = useState([]);
     let navigate = useNavigate();
+    const {state, dispatch: ctxDispatch} = useContext(Store);
+    const {
+      cart: {cartItems},
+  } = state;
 
-
-    useEffect(() =>{
-        fetch("/products")
-          .then(res => res.json())
-          .then(json => {setProducts(json);})
-          .catch(error => {
-            console.log(`Server error: ${error.message}`)
-          });  
-      }, [])
-
-      const {state, dispatch: ctxDispatch} = useContext(Store);
-      const {
-        cart: {cartItems},
-    } = state;
+  const {products} = useContext(AdminContext)
+    
 
       const addToCartCartHandler = async (item) => {
         //checking if items are already in cart to avoid duplicates
