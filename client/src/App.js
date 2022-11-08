@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 import './App.css';
 
@@ -18,9 +18,25 @@ import {Store} from "./Store"
 import AdminContext from "./Context/AdminContext";
 
 
+let EMPTY_FORM = {
+  name: "",
+  price: 0,
+  stock: 0,
+  image: "",
+  description: ""
+}
 
 function App() { 
   let [products, setProducts] = useState([]);
+  let[orders, setOrders] = useState([]);
+  let [newProduct, setNewProduct] = useState(EMPTY_FORM);
+
+  let navigate = useNavigate();
+
+  const {state, dispatch: ctxDispatch} = useContext(Store);
+  const {
+    cart: {cartItems},
+} = state;
 
   useEffect(() =>{
     fetch("/products")
@@ -31,17 +47,85 @@ function App() {
       });  
   }, [])
 
-  const {state, dispatch: ctxDispatch} = useContext(Store);
-  const {
-    cart: {cartItems},
-} = state;
+  useEffect(() =>{
+    fetch("/orders")
+      .then(res => res.json())
+      .then(json => {setOrders(json);})
+      .catch(error => {
+        console.log(`Server error: ${error.message}`)
+      });  
+  }, [])
 
+  function addOrderItems(shippingDetails){
+    let address = `${shippingDetails.street}, ${shippingDetails.house_number}, ${shippingDetails.floor === "" ? "" : shippingDetails.floor+", "}${shippingDetails.postal_code}, ${shippingDetails.city}, ${shippingDetails.country}`;
+    let p_List = cartItems.map(p=> ({product_id: p.id, quantity:p.quantity}))
+    let c_name = `${shippingDetails.firstName} ${shippingDetails.lastName}`
+    fetch("/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email: shippingDetails.email, address: address, customer_name: c_name, productList: p_List})
+      })
+      .then((res) => {
+        res.json()
+        .then((json)=> {
+          setOrders(json)
+        })})
+      .catch(error => {
+        console.log(`Server error: ${error.message}`)
+      })
+      ctxDispatch({type: 'EMPTY_CART'});
+      navigate("/orderconfirmation");
+}
 
+function addProduct(){
+  fetch("/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name: newProduct.name, price: newProduct.price, stock: newProduct.stock, image: newProduct.image, description: newProduct.description})
+    })
+    .then((res) => {
+      res.json()
+      .then((json)=> {
+        setProducts(json)
+      })})
+    .catch(error => {
+      console.log(`Server error: ${error.message}`)
+    })
+}
 
- 
-let obj = {
+function changeOrderStatus(id, complete){
+  fetch(`/orders/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({processed: complete})
+  })
+  // Continue fetch request here
+  .then((res) => {
+    res.json()
+    .then((json)=> {
+      setOrders(json)
+    })})
+  .catch(error => {
+    console.log(`Server error: ${error.message}`)
+  })
+}
+
+let contextObj = {
   products,
-  setProducts
+  setProducts,
+  addProduct,
+  newProduct,
+  setNewProduct, 
+  newProduct,
+  addOrderItems,
+  orders,
+  changeOrderStatus
 }
 
   return (
@@ -56,7 +140,7 @@ let obj = {
         <p>- THE ZODIAC HEALER -</p>
         <br/>
 
-        <AdminContext.Provider value={obj}>
+        <AdminContext.Provider value={contextObj}>
         <Routes>
           < Route path="/" element={<HomeView />} />
           < Route path="/sign" element={<SignView />} />

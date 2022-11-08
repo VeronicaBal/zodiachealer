@@ -19,14 +19,15 @@ CREATE TABLE `orders`(
     `customer_name` VARCHAR(255) NOT NULL,
     `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `email` VARCHAR(255) NOT NULL,
-    `address` VARCHAR(255) NOT NULL
+    `address` VARCHAR(255) NOT NULL,
+    `processed` BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE `order_item`(
     `id` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `quantity` INT NOT NULL,
     `product_id` INT UNSIGNED NOT NULL,
-    `order_id` INT UNSIGNED NOT NULL
+    `order_id` INT UNSIGNED NOT NULL 
 );
 
 ALTER TABLE

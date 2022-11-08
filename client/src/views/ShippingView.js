@@ -1,6 +1,7 @@
 import React, {useState, useContext} from "react";
 import {Store} from '../Store';
 import {useNavigate} from 'react-router-dom';
+import AdminContext from "../Context/AdminContext";
 
 import "./ShippingView.css"
 
@@ -18,7 +19,6 @@ let EMPTY_FORM = {
 
 function ShippingView(){
 let[shippingDetails, setShippingDetails] = useState(EMPTY_FORM);
-let[orders, setOrders] = useState([]);
 const navigate = useNavigate();
 
 
@@ -27,6 +27,9 @@ const {state, dispatch: ctxDispatch} = useContext(Store);
 const {
     cart: {cartItems},
 } =  state;
+
+const {addOrderItems} = useContext(AdminContext)
+
 
 function handleChange(event){
     let name = event.target.name;
@@ -39,33 +42,10 @@ function handleChange(event){
 
 function handleSubmit(event){
     event.preventDefault();
-    addOrderItems();
+    addOrderItems(shippingDetails);
+    setShippingDetails(EMPTY_FORM);
 }
 
-function addOrderItems(){
-    let address = `${shippingDetails.street}, ${shippingDetails.house_number}, ${shippingDetails.floor === "" ? "" : shippingDetails.floor+", "}${shippingDetails.postal_code}, ${shippingDetails.city}, ${shippingDetails.country}`;
-    let p_List = cartItems.map(p=> ({product_id: p.id, quantity:p.quantity}))
-    let c_name = `${shippingDetails.firstName} ${shippingDetails.lastName}`
-    fetch("/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({email: shippingDetails.email, address: address, customer_name: c_name, productList: p_List})
-      })
-      .then((res) => {
-        res.json()
-        .then((json)=> {
-          setOrders(json)
-        })})
-      .catch(error => {
-        console.log(`Server error: ${error.message}`)
-      })
-      setShippingDetails(EMPTY_FORM);
-      ctxDispatch({type: 'EMPTY_CART'});
-      navigate("/orderconfirmation");
-
-}
 
 
 

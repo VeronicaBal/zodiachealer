@@ -19,8 +19,11 @@ function joinToJson(result) {
         date: row0.date,
         email: row0.email,
         address: row0.address,
+        processed: row0.processed,
         products: [
-                { name: row0.name,
+                {
+                id: row0.product_id, 
+                name: row0.name,
                 quantity: row0.quantity, 
                 price: row0.price
                 } ] 
@@ -30,7 +33,8 @@ function joinToJson(result) {
         for (let row of rows) {
             if(row.order_id === order_details.id){
                 order_details.products.push(
-                    { name: row.name,
+                    {   id: row.product_id, 
+                        name: row.name,
                         quantity: row.quantity, 
                         price: row.price
                     } )
@@ -45,8 +49,10 @@ function joinToJson(result) {
                         date: row.date,
                         email: row.email,
                         address: row.address,
+                        processed: row.processed,
                         products: [
-                              { name: row.name,
+                              { id: row.product_id, 
+                                name: row.name,
                                 quantity: row.quantity, 
                                 price: row.price
                             }    
@@ -66,7 +72,7 @@ function joinToJson(result) {
 
 router.get("/orders", function(req, res) {
     let sql=`
-        SELECT orders.*, order_item.order_id, order_item.quantity, products.name, products.price 
+        SELECT orders.*, order_item.order_id, order_item.quantity, order_item.product_id, products.name, products.price 
         FROM ORDERS
         JOIN order_item
         ON orders.id = order_item.order_id
@@ -107,6 +113,28 @@ router.post("/orders", function(req, res){
         })})
         .catch(err => res.status(500).send({error: err.message}));            
   });
+
+
+router.put("/orders/:id", function(req,res){
+    let orderID = Number(req.params.id);
+    let {processed} = req.body;
+    db(`UPDATE orders SET processed = ${processed} WHERE id = ${orderID};`)
+    .then(() => {
+    let sql= (`SELECT orders.*, order_item.order_id, order_item.quantity, product.id, products.name, products.price 
+    FROM ORDERS
+    JOIN order_item
+    ON orders.id = order_item.order_id
+    JOIN products
+    ON products.id = order_item.product_id`) 
+    db(sql)
+    .then(result => {
+       res.send(joinToJson(result))})
+    })   
+    .catch(err => res.status(500).send({error: err.message})); 
+})
+
+
+
 
 
 module.exports = router;

@@ -1,5 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import "./AdminView.css"
+import AdminContext from "../Context/AdminContext";
+
+
 
 let EMPTY_FORM = {
     name: "",
@@ -7,10 +10,12 @@ let EMPTY_FORM = {
     stock: 0,
     image: "",
     description: ""
-}
+  }
 
 function AdminView(){
-    let [newProduct, setNewProduct] = useState(EMPTY_FORM);
+
+    const {addProduct, setNewProduct, newProduct, orders, changeOrderStatus} = useContext(AdminContext)
+
 
     function handleChange(event){
         let name = event.target.name;
@@ -27,26 +32,14 @@ function AdminView(){
         setNewProduct(EMPTY_FORM);
     }
 
-    //change position of this function/of setProducts
-    function addProduct(){
-        fetch("/products", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ name: newProduct.name, price: newProduct.price, stock: newProduct.stock, image: newProduct.image, description: newProduct.description})
-          })
-          .then((res) => {
-            res.json()
-            .then((json)=> {
-              //setProducts(json)
-            })})
-          .catch(error => {
-            console.log(`Server error: ${error.message}`)
-          })
+
+    function handleClick(id, event){
+        let complete = event.target.checked;
+        complete = (complete ? 1 : 0);
+        console.log(complete);
+        console.log(id);
+        changeOrderStatus(id, complete)
     }
-
-
 
     return(
         <div>
@@ -55,24 +48,64 @@ function AdminView(){
                 <h3>Add a product</h3>
                     <div className="grid">
                         <label>Name
-                            <input name="name" type="text" onChange={e => handleChange(e)}/>
+                            <input name="name" required type="text" onChange={e => handleChange(e)}/>
                         </label>
                         <label>Price
-                            <input name="price" type="number" step="0.01" min="0.00" onChange={e => handleChange(e)}/>
+                            <input name="price" required type="number" step="0.01" min="0.00" onChange={e => handleChange(e)}/>
                         </label>
                         <label>Stock
-                            <input name="stock" type="number" onChange={e => handleChange(e)}/>
+                            <input name="stock" required type="number" onChange={e => handleChange(e)}/>
                         </label>
                         <label>Image
-                            <input name="image" type="file" onChange={e => handleChange(e)}/>
+                            <input  required name="image"  type="url" onChange={e => handleChange(e)}/>
                         </label>
                         <div >
                             <label className="description">Description
-                                <textarea name="description" onChange={e => handleChange(e)}/>
+                                <textarea name="description" required onChange={e => handleChange(e)}/>
                             </label>
                         </div>
+                    <button type="submit">AddProduct</button>
                     </div>
             </form>
+
+            <div className="removeProds">
+                <h3>Remove Products</h3>
+
+            </div>
+
+            <div className="orders">
+            <h3>Orders</h3>
+                <div className= "tablecontainer">
+                <table className="table">
+                    <tbody className="tableContent">
+                        <tr>
+                            <th>ID</th>
+                            <th>Processed</th>
+                            <th>Customer Name</th>
+                            <th>Date</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Products</th>
+                        </tr>
+                        {orders.map(o=>(
+                        <tr key={o.id}>
+                            <td>{o.id}</td>
+                            <td><input type="checkbox" defaultChecked={o.processed} onClick={(e) => handleClick(o.id, e)}/></td>
+                            <td>{o.customer_name}</td>
+                            <td>{new Date(o.date).toLocaleString()}</td>
+                            <td>{o.email}</td>
+                            <td>{o.address}</td>
+                            <td>{o.products.map(p => (
+                                <div key={p.id}>{p.name} <br/> x{p.quantity}</div>))}
+                        </td>
+                        </tr>
+                        ))}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+
         </div>
     )
 }
