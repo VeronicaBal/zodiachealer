@@ -3,9 +3,9 @@ import { Routes, Route, Link } from "react-router-dom";
 
 import './App.css';
 
-import SignView from './components/SignView';
-import AffirmationView from './components/AffirmationView';
-import MashupView from './components/MashupView';
+import SignView from './views/SignView';
+import AffirmationView from './views/AffirmationView';
+import MashupView from './views/MashupView';
 import NavBar from "./components/NavBar";
 import ShopView from "./views/ShopView";
 import ProductView from "./views/ProductView";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AffirmationView.css";
-import AffirmationData from "./AffirmationData";
-import AffirmationAnswers from "./AffirmationAnswers";
+import AffirmationData from "../components/AffirmationData";
+import AffirmationAnswers from "../components/AffirmationAnswers";
 
    
 
