@@ -22,30 +22,9 @@ function CartView(){
     }
    
     const checkoutHandler = () => {
-        addOrderItems();
         navigate('/shipping');
     };
 
-    const addOrderItems= () => {
-    for (let item in cartItems){
-    fetch("/items", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({quantity: item.quantity, product_id: item.product_id, order_id: 5})
-      })
-      // Continue fetch request here
-      .then((res) => {
-        res.json()
-        .then((json)=> {
-         // props.setIndicators(json)
-        })})
-      .catch(error => {
-        console.log(`Server error: ${error.message}`)
-      })
-    }
-}
 
     return (
         <div className="cart-view">

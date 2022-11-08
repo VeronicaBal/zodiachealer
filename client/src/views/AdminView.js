@@ -29,7 +29,7 @@ function AdminView(){
 
     //change position of this function/of setProducts
     function addProduct(){
-        fetch("/api/todos", {
+        fetch("/products", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -39,14 +39,14 @@ function AdminView(){
           .then((res) => {
             res.json()
             .then((json)=> {
-              setProducts(json)
+              //setProducts(json)
             })})
           .catch(error => {
             console.log(`Server error: ${error.message}`)
           })
     }
 
-    
+
 
     return(
         <div>

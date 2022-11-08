@@ -94,7 +94,6 @@ router.post("/orders", function(req, res){
             db(`INSERT INTO order_item (quantity, product_id, order_id)
             VALUES (${product.quantity}, ${product.product_id}, ${orderId})`)
             }
-         })
          let sql= (`SELECT orders.*, order_item.order_id, order_item.quantity, products.name, products.price 
          FROM ORDERS
          JOIN order_item
@@ -105,7 +104,7 @@ router.post("/orders", function(req, res){
          db(sql)
          .then(result => {
             res.send(joinToJson(result));
-        })
+        })})
         .catch(err => res.status(500).send({error: err.message}));            
   });
 

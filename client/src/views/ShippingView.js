@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {Store} from '../Store';
 import "./ShippingView.css"
 
 let EMPTY_FORM = {
@@ -15,6 +16,13 @@ let EMPTY_FORM = {
 
 function ShippingView(){
 let[shippingDetails, setShippingDetails] = useState(EMPTY_FORM);
+let[orders, setOrders] = useState([]);
+
+
+const {state, dispatch: ctxDispatch} = useContext(Store);
+const {
+    cart: {cartItems},
+} =  state;
 
 function handleChange(event){
     let name = event.target.name;
@@ -27,14 +35,38 @@ function handleChange(event){
 
 function handleSubmit(event){
     event.preventDefault();
+    addOrderItems();
+    setShippingDetails(EMPTY_FORM);
 }
+
+function addOrderItems(){
+    let address = `${shippingDetails.street}, ${shippingDetails.house_number}, ${shippingDetails.floor === "" ? "" : shippingDetails.floor+", "}${shippingDetails.postal_code}, ${shippingDetails.city}, ${shippingDetails.country}`;
+    let p_List = cartItems.map(p=> ({product_id: p.id, quantity:p.quantity}))
+    let c_name = `${shippingDetails.firstName} ${shippingDetails.lastName}`
+    fetch("/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email: shippingDetails.email, address: address, customer_name: c_name, productList: p_List})
+      })
+      .then((res) => {
+        res.json()
+        .then((json)=> {
+          setOrders(json)
+        })})
+      .catch(error => {
+        console.log(`Server error: ${error.message}`)
+      })
+}
+
 
 
     return (
         <div className="shipping-view">
             <h2>Shipping Details</h2>
             <form onSubmit={e=> handleSubmit(e)} className="container">
-                <separate className="user-form">
+                <div className="user-form">
                     <label> First Name
                         <div>
                             <input onChange={e => handleChange(e)} name="firstName" key="firstName" required type="text"/>
@@ -50,10 +82,10 @@ function handleSubmit(event){
                             <input onChange={e => handleChange(e)} name="email" key="email" required type="email"/>
                         </div>
                     </label>
-                </separate>
+                </div>
                 
                 <h3>Address</h3>
-                <separate className="address-form">
+                <div className="address-form">
                     <label> Street
                         <div>
                             <input onChange={e => handleChange(e)} name="street" key="street" required type="text"/>
@@ -88,7 +120,7 @@ function handleSubmit(event){
                         </div>
 
                     </label>
-                </separate>
+                </div>
                 <div>
                     <button type="submit">Confirm Order</button>
                 </div>
