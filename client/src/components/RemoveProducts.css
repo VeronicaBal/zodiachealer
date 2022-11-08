@@ -1,0 +1,51 @@
+.removeProds h3{
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.removeProds .delete{
+    border:none;
+    width: 30px;
+    height: 35px;
+    border-radius: 0px;
+    object-fit:cover;
+}
+
+.removeProds .form-container{
+    overflow-x: auto;
+}
+
+.removeProds .input {
+    background-color: transparent;
+    border: 2px solid #4A4A4A;
+    color: white;
+    outline: 0;
+    padding: auto;
+    margin: 5px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 150px;
+    font-size: 20px
+}
+
+.removeProds button {
+    background: transparent;
+    color: #F0F0F0;
+    border: 1.2px solid #F0F0F0;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 5px 30px ;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    margin: 15px;
+    -webkit-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      transition: all 0.4s;
+  }
+
+  .removeProdsbutton:hover, button:focus {
+    background-color: white;
+    color: #333333;
+}

@@ -116,6 +116,19 @@ function changeOrderStatus(id, complete){
   })
 }
 
+function removeProduct(id){
+  fetch(`/products/${id}`, {method: "DELETE"})
+  // Continue fetch request here
+  .then((res) => {
+    res.json()
+    .then((json)=> {
+      setProducts(json)
+    })})
+  .catch(error => {
+    console.log(`Server error: ${error.message}`)
+  })
+}
+
 let contextObj = {
   products,
   setProducts,
@@ -125,7 +138,8 @@ let contextObj = {
   newProduct,
   addOrderItems,
   orders,
-  changeOrderStatus
+  changeOrderStatus,
+  removeProduct
 }
 
   return (
