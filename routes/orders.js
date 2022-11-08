@@ -88,11 +88,12 @@ router.post("/orders", function(req, res){
     SELECT LAST_INSERT_ID();`)
     .then((result) => {
         let orderId = result.data[0].insertId;
-         for(product in productList){
-            let product = productList[product];
+         for(p of productList){
+            let product = p;
+            console.log("********", p)
             db(`INSERT INTO order_item (quantity, product_id, order_id)
             VALUES (${product.quantity}, ${product.product_id}, ${orderId})`)
-            .then(result => res.status(201).send(result.data) )}
+            }
          })
          let sql= (`SELECT orders.*, order_item.order_id, order_item.quantity, products.name, products.price 
          FROM ORDERS

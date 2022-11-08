@@ -23,8 +23,30 @@ function AdminView(){
 
     function handleSubmit(event){
         event.preventDefault();
+        addProduct();
         setNewProduct(EMPTY_FORM);
     }
+
+    //change position of this function/of setProducts
+    function addProduct(){
+        fetch("/api/todos", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name: newProduct.name, price: newProduct.price, stock: newProduct.stock, image: newProduct.image, description: newProduct.description})
+          })
+          .then((res) => {
+            res.json()
+            .then((json)=> {
+              setProducts(json)
+            })})
+          .catch(error => {
+            console.log(`Server error: ${error.message}`)
+          })
+    }
+
+    
 
     return(
         <div>
