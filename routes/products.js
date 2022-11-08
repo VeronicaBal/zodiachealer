@@ -37,4 +37,21 @@ router.post("/products", function(req, res){
       .catch(err => res.status(500).send({error: err.message}));
   });
 
+
+router.delete("/products/:id", function(req, res) {
+    let productID = Number(req.params.id);
+    db(`SELECT * FROM products WHERE id = ${productID}`)
+    .then((result => {
+        if(!result.data.length){
+        res.status(404).send({error: 'Product not found'});
+        } else {
+        db(`DELETE FROM products WHERE id = ${productID}`)
+        .then(()=>{
+            db('SELECT * FROM products')
+            .then((result) => res.send(result.data))})
+        }
+    }))
+    .catch(err => res.status(500).send({error: err.message}))
+})
+
 module.exports = router;
