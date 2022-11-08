@@ -11,6 +11,7 @@ import ShopView from "./views/ShopView";
 import ProductView from "./views/ProductView";
 import CartView from "./views/CartView";
 import ShippingView from "./views/ShippingView";
+import OrderConfirmationView from "./views/OrderConfirmationView";
 import AdminView from "./views/AdminView";
 
 
@@ -55,6 +56,7 @@ function App() {
         < Route path="/product/:name" element={<ProductView />} />
         < Route path="/cart" element={<CartView />} />
         < Route path="/shipping" element={<ShippingView />} />
+        < Route path="/orderconfirmation" element={<OrderConfirmationView />} />
         < Route path="/admin" element={<AdminView />} />
 
 

@@ -23,7 +23,8 @@ function reducer(state, action) {
                 (item) => item.id === newItem.id
             );
             
-            //if the item is already in the cart, update the current item with the new item, otherwise keep the item in the cart by adding it at the end of cartItems
+            //if the item is already in the cart, update the current item with the new item, 
+            //otherwise keep the item in the cart by adding it at the end of cartItems
             const cartItems = existItem 
             ? state.cart.cartItems.map((item) => 
             item.name === existItem.name ? newItem : item
@@ -38,6 +39,12 @@ function reducer(state, action) {
                 );
                 localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
+                return {...state, cart: {...state.cart, cartItems}};
+            };
+
+            case 'EMPTY_CART': {
+                const cartItems= [];
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
                 return {...state, cart: {...state.cart, cartItems}};
             }
 

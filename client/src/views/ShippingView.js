@@ -1,5 +1,7 @@
 import React, {useState, useContext} from "react";
 import {Store} from '../Store';
+import {useNavigate} from 'react-router-dom';
+
 import "./ShippingView.css"
 
 let EMPTY_FORM = {
@@ -17,6 +19,8 @@ let EMPTY_FORM = {
 function ShippingView(){
 let[shippingDetails, setShippingDetails] = useState(EMPTY_FORM);
 let[orders, setOrders] = useState([]);
+const navigate = useNavigate();
+
 
 
 const {state, dispatch: ctxDispatch} = useContext(Store);
@@ -36,7 +40,6 @@ function handleChange(event){
 function handleSubmit(event){
     event.preventDefault();
     addOrderItems();
-    setShippingDetails(EMPTY_FORM);
 }
 
 function addOrderItems(){
@@ -58,6 +61,10 @@ function addOrderItems(){
       .catch(error => {
         console.log(`Server error: ${error.message}`)
       })
+      setShippingDetails(EMPTY_FORM);
+      ctxDispatch({type: 'EMPTY_CART'});
+      navigate("/orderconfirmation");
+
 }
 
 
