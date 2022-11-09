@@ -1,109 +1,36 @@
-.add-product .grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 10px 50px;
-    width: 100%;
-    max-width: 1200px;
-    align-items: center;
-    text-align: left;
-}
-.add-product{
-    border: 1px solid white;
-    margin: 20px;
-    padding: 10px 0;
-}
-
-.add-product label{
-    margin-left: 40px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #9B9B9B;
-    cursor: text;
-    font-size: 18px;
-    padding-top: 10px;
-    padding-bottom: 50px;
-    line-height: 20px;
-}
-
-.add-product input {
-    background-color: transparent;
-    border: 0;
-    border-bottom: 2px solid #4A4A4A;
-    color: white;
-    outline: 0;
-    padding: 5px 20px;
-    text-align: center;
-    transition: all 0.3s;
-    width: 150px;
-    font-size: 20px
-}
-
-.add-product textarea {
-    background-color: transparent;
-    border: 2px solid #4A4A4A;
-    color: white;
-    outline: 0;
-    padding: 5px 20px;
-    text-align: center;
-    transition: all 0.3s;
-    width: 150px;
-    font-size: 20px;
-    margin-left: 10px;
-    vertical-align: middle;
-}
-
-.add-product .description{
-    display: block;
-    grid-column: 1/span 2;
-    
-}
-
-.add-product button{
+.admin button {
     background: transparent;
     color: #F0F0F0;
     border: 1.2px solid #F0F0F0;
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: 2px;
-    padding: 18px 30px ;
+    padding: 5px 30px ;
     text-transform: uppercase;
     cursor: pointer;
-    display: block;
-    margin: 15px auto;
+    display: inline-block;
     -webkit-transition: all 0.4s;
       -moz-transition: all 0.4s;
       transition: all 0.4s;
-}
+  }
 
-
-.add-product button:hover, button:focus {
+  .admin button:hover, button:focus {
     background-color: white;
     color: #333333;
 }
 
-
-
-.tablecontainer{
-    overflow-x: auto;
-    margin: 0 50px;
-    border: 1px solid white;
-
+.admin h2{
+    margin-bottom: 30px;
 }
 
-.tableContent{
-    overflow-x: auto;
-    margin: 0 50px;
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.tableContent td{
-    padding: 0 10px; 
-    white-space: nowrap;
-}
-
-td, th{
-    border: 1px solid white;
-}
-
-.table{
-    border-collapse: collapse;
-
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

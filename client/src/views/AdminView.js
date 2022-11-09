@@ -14,7 +14,9 @@ function changeView(event){
 }
 
     return(
-        <div>
+        <div className="admin">
+            <h2>Admin view</h2>
+
             <button name="add" onClick={e=> changeView(e)}>Add Products</button>
             <button name="remove" onClick={e=> changeView(e)}>Edit Products</button>
             <button name="orders" onClick={e=> changeView(e)}>View Orders</button>

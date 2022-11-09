@@ -1,0 +1,86 @@
+.add-product .grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 10px 20px;
+    width: 100%;
+    max-width: 1200px;
+    align-items: center;
+    text-align: left;
+}
+.add-product{
+    border: 1px solid white;
+    width: 50%;
+    margin: 40px auto;
+    padding: 10px 0;
+}
+
+.container{
+align-items: center;
+display: inline;}
+
+.add-product label{
+    margin-left: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    line-height: 20px;
+}
+
+.add-product input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    color: white;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 150px;
+    font-size: 20px
+}
+
+.add-product textarea {
+    background-color: transparent;
+    border: 2px solid #4A4A4A;
+    color: white;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 150px;
+    font-size: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.add-product .description{
+    display: block;
+    grid-column: 1/span 2;
+    
+}
+
+.add-product button{
+    background: transparent;
+    color: #F0F0F0;
+    border: 1.2px solid #F0F0F0;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 18px 30px ;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: block;
+    margin: 15px auto;
+    -webkit-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      transition: all 0.4s;
+}
+
+
+.add-product button:hover, button:focus {
+    background-color: white;
+    color: #333333;
+}

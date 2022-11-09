@@ -33,9 +33,9 @@ function CartView(){
                 {cartItems.length === 0 ? (
                     <p>Cart is empty.</p>
                 ) :
-                <separate className="product-list"> 
+                <div className="product-list"> 
                     {cartItems.map((item) => (
-                        <separate className="product" key={item.id}>
+                        <div className="product" key={item.id}>
                             <img src={item.image}
                             alt={item.name}/>
                             <Link to={`product/${item.name}`} className="name">{item.name}</Link>
@@ -46,18 +46,18 @@ function CartView(){
                             onClick={()=> updateCartHandler(item, item.quantity+1)}>+</button>
                             <p className="price">€{(item.price*item.quantity).toFixed(2)}</p>
                             <a  onClick={()=> removeItemHandler(item)}><img className="delete" src="bin-icon.png" alt="delete"/></a>
-                        </separate>
+                        </div>
                     ) )}
-                </separate>
+                </div>
                 }
-                <separate className="checkout-container">
+                <div className="checkout-container">
                     <h3>
                         Subtotal ({cartItems.reduce((a,c) => a + c.quantity, 0)}
                         {' '}items) : €
                         {cartItems.reduce((a,c) => a+c.price*c.quantity, 0).toFixed(2)}
                     </h3>
                     <button className="checkout" disabled={cartItems.length === 0} onClick={checkoutHandler}>Proceed to Checkout</button>
-                </separate>
+                </div>
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import React,{useContext} from "react";
 import AdminContext from "../Context/AdminContext";
+import "./AddProduct.css";
 
 
 let EMPTY_FORM = {
@@ -31,8 +32,7 @@ const {addProduct, setNewProduct, newProduct, orders, changeOrderStatus} = useCo
 
 
     return(
-        <div>
-            <h2>Admin view</h2>
+        <div className="container">
             <form className="add-product" onSubmit={(e)=>handleSubmit(e)}>
                 <h3>Add a product</h3>
                     <div className="grid">

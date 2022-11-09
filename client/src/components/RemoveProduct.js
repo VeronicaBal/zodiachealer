@@ -3,13 +3,7 @@ import AdminContext from "../Context/AdminContext";
 import "./RemoveProducts.css"
 
 function RemoveProduct(){
-    const {products, removeProduct} = useContext(AdminContext)
-
-    function handleClick(event){
-        let id= event.target.name;
-        console.log(id)
-        removeProduct(event.target.name)
-    }
+    const {products} = useContext(AdminContext)
 
     return(
         
@@ -29,7 +23,7 @@ function RemoveProduct(){
                     </tr>
                         {products.map(p => (
                             <tr key={p.id}>
-                                    <td><button name={p.id} onClick={e => handleClick(e)}>X</button></td>
+                                    <td><button name={p.id}>X</button></td>
                                     <td><button>save</button></td>
                                     <td><input className="input" type="text" defaultValue={p.name}/></td>
                                     <td><input className="input" type="number" defaultValue={p.price}/></td>

@@ -1,5 +1,30 @@
 .orders h3{
     margin: 20px 0;
-    text-transform: uppercase;
     letter-spacing: 2px;
+}
+.tablecontainer{
+    overflow-x: auto;
+    margin: 0 50px;
+    border: 1px solid white;
+
+}
+
+.tableContent{
+    overflow-x: auto;
+    margin: 0 50px;
+}
+
+.tableContent td{
+    padding: 0 10px; 
+    white-space: nowrap;
+}
+
+td, th{
+    border: 1px solid white;
+    font-size: 20px;
+}
+
+.table{
+    border-collapse: collapse;
+
 }

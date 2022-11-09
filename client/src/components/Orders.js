@@ -4,15 +4,13 @@ import "./Orders.css"
 
 function Orders(){
     
-    const {orders, changeOrderStatus} = useContext(AdminContext)
+    const {orders} = useContext(AdminContext)
 
 
     function handleClick(id, event){
         let complete = event.target.checked;
         complete = (complete ? 1 : 0);
-        console.log(complete);
-        console.log(id);
-        changeOrderStatus(id, complete)
+        //changeOrderStatus(id, complete)
     }
 
     return(

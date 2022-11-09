@@ -4,7 +4,7 @@ import {createContext, useReducer} from 'react';
 export const Store = createContext();
 
 const initialState = {
-    cart: {
+    cart:{
         //if there are items in the local store, use them as an initial state, otherwise set it as empty
         //this condition prevents the cart to become empty when we refresh the page 
         cartItems: localStorage.getItem('cartItems')
@@ -22,7 +22,7 @@ function reducer(state, action) {
             const existItem = state.cart.cartItems.find(
                 (item) => item.id === newItem.id
             );
-            
+
             //if the item is already in the cart, update the current item with the new item, 
             //otherwise keep the item in the cart by adding it at the end of cartItems
             const cartItems = existItem 

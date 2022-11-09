@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import './App.css';
 
@@ -97,37 +97,27 @@ function addProduct(){
     })
 }
 
-function changeOrderStatus(id, complete){
-  fetch(`/orders/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({processed: complete})
-  })
-  // Continue fetch request here
-  .then((res) => {
-    res.json()
-    .then((json)=> {
-      setOrders(json)
-    })})
-  .catch(error => {
-    console.log(`Server error: ${error.message}`)
-  })
-}
+// function changeOrderStatus(id, complete){
+//   console.log(complete)
+//   fetch(`/orders/${id}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify({processed: complete})
+//   })
+//   // Continue fetch request here
+//   .then((res) => {
+//     console.log(res)
+//     res.json()
+//     .then((json)=> {
+//       setOrders(json)
+//     })})
+//   .catch(error => {
+//     console.log(`Server error: ${error.message}`)
+//   })
+// }
 
-function removeProduct(id){
-  fetch(`/products/${id}`, {method: "DELETE"})
-  // Continue fetch request here
-  .then((res) => {
-    res.json()
-    .then((json)=> {
-      setProducts(json)
-    })})
-  .catch(error => {
-    console.log(`Server error: ${error.message}`)
-  })
-}
 
 let contextObj = {
   products,
@@ -137,9 +127,7 @@ let contextObj = {
   setNewProduct, 
   newProduct,
   addOrderItems,
-  orders,
-  changeOrderStatus,
-  removeProduct
+  orders  
 }
 
   return (

@@ -26,7 +26,8 @@ const {cart} = state
     //checking if items are already in cart to avoid duplicates
     const existItem = cart.cartItems.find((x) => x.id === product.id);
     //if the item exist 
-    const quantity = existItem ? existItem.quantity + Number(selectedQuantity) : 1;
+    const quantity = existItem ? existItem.quantity + Number(selectedQuantity) : Number(selectedQuantity);
+    console.log(quantity)
     cxtDispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}}) //change quantity depending on input
     navigate(`/cart`)
  } 

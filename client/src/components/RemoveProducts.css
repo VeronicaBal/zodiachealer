@@ -1,6 +1,5 @@
 .removeProds h3{
     margin: 20px 0;
-    text-transform: uppercase;
     letter-spacing: 2px;
 }
 
@@ -12,8 +11,17 @@
     object-fit:cover;
 }
 
-.removeProds .form-container{
+.removeProds .tablecontainer{
     overflow-x: auto;
+    margin: 0 80px;
+}
+
+.removeProds th, tr{
+    padding: 0 80px;
+}
+
+.removeProds th{
+    font-size: 20px;
 }
 
 .removeProds .input {
