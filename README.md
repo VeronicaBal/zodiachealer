@@ -1,4 +1,134 @@
-# Zodiac Healer
+<div align="center">
+
+<h1> <b>Zodiac Healer - The Online Shop</b> </h1>
+
+<h2> Feature extension by Veronica Baldin </h2>
+<h2> Original MVP by Danielle Drake </h2>
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#introduction">Introduction</a>
+    </li>
+    <li>
+      <a href="#motivation">Motivation</a>
+    </li>
+    <li>
+      <a href="#tools-used">Tools Used</a>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#database-schema">Database Schema</a></li>
+    <li><a href="#api-routes">API Routes</a></li>
+    <li><a href="#future-features">Future Features</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#original-readme">Original Readme</a></li>
+  </ol>
+</details>
+
+</div>
+
+## Tools Used
+* VS Code
+* Github
+* Gitbash
+* Postman
+* MySQL
+* HTML
+* CSS
+* JavaScript
+* React.js
+* Node.js
+* Express
+* React Router
+* DrawSQL
+
+## Getting started 
+
+### Prerequisites
+- npm
+- node
+- mySQL
+
+
+### Installation
+
+1. Create a .env file:
+
+  ```
+  DB_HOST = localhost
+  DB_NAME = shop
+  DB_USER = // your db username
+  DB_PASS = // your db password
+  TZ = UTC
+  ```
+
+2. To run the database, type 'mysql' into the terminal and run the following command:
+ ```sh
+  CREATE DATABASE shop;
+  ```
+
+3. Install NPM packages on both the server and on the client.
+```
+npm install
+```
+
+4. Make sure to populate your database with the correct info by typing this on the server side:
+```
+npm run migrate
+```
+
+5. To run the backend, type in the server side:
+```
+npm start
+```
+
+6. In a second terminal window, type 'cd client' to get into the front-end folder, then type:
+```
+npm start
+```
+
+ Frontend runs on http://localhost:3000, and backend runs on http://localhost:5000.
+
+
+## Database Schema
+
+<img width="917" alt="Screenshot 2022-12-16 at 20 39 09" src="https://user-images.githubusercontent.com/113427751/208175980-a87099d8-b00d-4006-85cf-9a7ecb7dbae5.png">
+
+## API Routes
+You can access a table describing all API routes [here](https://docs.google.com/document/d/1xjT_hLAWnwsRiD6oWZlV_ly9zYuJhKSVRmh5oMERUZs/edit?usp=sharing)
+
+## Future features
+
+* Log-in for user and admin
+* Stripe for payments
+* Order confirmation sent by email
+
+## Contact
+
+Veronica Baldin - [LinkedIn](https://www.linkedin.com/in/veronica-baldin/)
+
+## Acknowledgments
+
+* Instructor [Jim Rudolf](https://github.com/jbrcodes)
+* TA [Lucie Baborová](https://github.com/lucieBBR)
+* TA [Maria Llaverias Pugliese](https://github.com/mariallaverias)
+* TA [Pia Prozesky](https://github.com/piaprozesky)
+
+
+### Thank you for all your help!<br>
+
+
+_This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
+
+## Original Readme
 
 ### Summary
 
